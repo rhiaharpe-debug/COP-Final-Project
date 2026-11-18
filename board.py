@@ -81,39 +81,87 @@ class Board:
         self.cells[row][col].selected = True
 
     # Click Cell
+    # SAANVI I NEED YOU
     def click(self, x, y):
         pass
 
     # Sketch Numbers
+    # SAANVI I NEED YOU
     def sketch(self, value):
         pass
 
     # Write each Cell.value back to the corresponding position
     # in self.board to make the digital chessboard consistent
     # with the screen.
+    # SAANVI I NEED YOU
     def update(self, value):
         pass
 
     # Press Enter to input sketch number
+    # SAANVI I NEED YOU
     def place_number(self, value):
         pass
 
     # Clear input Sketch
     def clear(self):
+        if self.selected is not None:
+            row, col = self.selected
+            self.cells[row][col].set_sketched_value(0)
         pass
 
     # Restart the original game
-    def reet_to_original(self):
-        pass
+    def reset_to_original(self):
+        self.board = [row.copy() for row in self.original_board]
+
+        for row in range(self.rows):
+            for col in range(self.cols):
+                self.cells[row][col].set_cell_value(self.board[row][col])
+                self.cells[row][col].selected = False
+
+        self.selected = None
 
     # Find an empty cell
     def find_empty(self):
-        pass
+        for row in range(self.rows):
+            for col in range(self.cols):
+                if self.board[row][col] == 0:
+                    return (row, col)
+
+        return None
 
     # Return False if cell is empty
     def is_full(self):
-        pass
+        return self.selected is None
 
     # Final check of answers weather input is correct or not
     def check_board(self):
-        pass
+        if not self.is_full():
+            return False
+        valid_numbers = set(range(1, 10))
+
+        # Check FOr Horizontal lin
+        for row in self.board:
+            if set(row) != valid_numbers:
+                return False
+
+        # Check for Vertical line
+        for col in range(self.cols):
+            column = []
+            for row in range(self.rows):
+                column.append(self.board[row][col])
+            if set(column) != valid_numbers:
+                return False
+
+        # Check for Subgrid
+        for start_row in range(0,9,3):
+            for start_col in range(0, 9, 3):
+                subgrid = []
+
+                for row in range(start_row, start_row + 3):
+                    for col in range(start_col, start_col + 3):
+                        subgrid.append(self.board[row][col])
+
+                if set(subgrid) != valid_numbers:
+                    return False
+
+        return True
