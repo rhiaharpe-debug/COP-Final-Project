@@ -1,4 +1,10 @@
 
+#######################################
+# THIS IS JUST FOR TESTING
+# TEMPORARY
+#######################################
+
+
 import pygame as p
 from board import Board
 
