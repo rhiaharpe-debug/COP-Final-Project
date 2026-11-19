@@ -82,26 +82,33 @@ class Board:
 
     # Click Cell
     # SAANVI I NEED YOU
+
     def click(self, x, y):
-        pass
+        if self.x <= x < self.x + self.width and self.y <= y < self.y + self.height:
+            col = (x - self.x) // self.cell_size
+            row = (y - self.y) // self.cell_size
+            return (row, col)
+        return None
 
     # Sketch Numbers
     # SAANVI I NEED YOU
+
     def sketch(self, value):
         pass
-
     # Write each Cell.value back to the corresponding position
     # in self.board to make the digital chessboard consistent
     # with the screen.
     # SAANVI I NEED YOU
+
     def update(self, value):
         pass
 
+
     # Press Enter to input sketch number
     # SAANVI I NEED YOU
+
     def place_number(self, value):
         pass
-
     # Clear input Sketch
     def clear(self):
         if self.selected is not None:
