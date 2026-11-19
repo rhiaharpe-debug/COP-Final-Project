@@ -10,7 +10,7 @@ from board import Board
 
 p.init()
 
-# Window settings
+# Window settings(
 WIDTH = 500
 HEIGHT = 700
 BOARD_SIZE = 396
