@@ -90,26 +90,35 @@ class Board:
             return (row, col)
         return None
 
-    # Sketch Numbers
-    # SAANVI I NEED YOU
-
     def sketch(self, value):
-        pass
-    # Write each Cell.value back to the corresponding position
+        if self.selected is not None:
+            row, col = self.selected
+            if self.original_board[row][col] == 0:
+                self.cells[row][col].set_sketched_value(value)
+
     # in self.board to make the digital chessboard consistent
     # with the screen.
     # SAANVI I NEED YOU
 
     def update(self, value):
-        pass
+        if self.selected is not None:
+            row, col = self.selected
+            self.board[row][col] = value
 
 
     # Press Enter to input sketch number
     # SAANVI I NEED YOU
 
+
+
+
     def place_number(self, value):
-        pass
-    # Clear input Sketch
+        if self.selected is not None:
+            row, col = self.selected
+            if self.original_board[row][col] == 0:
+                self.cells[row][col].set_cell_value(value)
+                self.update(value)
+        # Clear input Sketch
     def clear(self):
         if self.selected is not None:
             row, col = self.selected
